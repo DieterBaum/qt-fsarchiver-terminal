@@ -1,0 +1,7 @@
+===========================================================================================================
+* qt-fsarchiver: Terminalprogram for qt-fsarchiver fsarchiver [http://wiki.ubuntuusers.de/qt4-fsarchiver] 
+===========================================================================================================
+*  qt5-fsarchiver-0.8.5-0 October 30, 2018.
+     - qt-fsarchiver has been divided into a user interface program qt-fsarchiver and a terminal program qt-fsarchiver-terminal.
+
+

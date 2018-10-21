@@ -43,3 +43,7 @@ In Debian you must instead sudo make install this: su -l, make install
 This is the command for Fedora and Suse: qmake-qt5 && make && sudo make install.
 
 Further information is contained in the doc files of qt-fsarchiver and qt-fsarchiver-terminal.
+
+
+
+
