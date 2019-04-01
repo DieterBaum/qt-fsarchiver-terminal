@@ -1,7 +1,9 @@
 ===========================================================================================================
-* qt-fsarchiver: Terminalprogram for qt-fsarchiver fsarchiver [http://wiki.ubuntuusers.de/qt4-fsarchiver] 
+* qt-fsarchiver: Terminalprogram for qt-fsarchiver fsarchiver [http://wiki.ubuntuusers.de/qt-fsarchiver] 
 ===========================================================================================================
-*  qt5-fsarchiver-0.8.5-0 October 30, 2018.
+*  qt-fsarchiver-0.8.5-8 April 10, 2019 30,
+     - Spaces in directory names are processed correctly.
+*  qt-fsarchiver-0.8.5-0 October 30, 2018.
      - qt-fsarchiver has been divided into a user interface program qt-fsarchiver and a terminal program qt-fsarchiver-terminal.
 
 
