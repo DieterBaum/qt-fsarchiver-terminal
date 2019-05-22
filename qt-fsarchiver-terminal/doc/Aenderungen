@@ -1,7 +1,9 @@
 =========================================================================================================
 * qt-fsarchiver-terminal: Terminal Programm für qt-fsarchiver [http://wiki.ubuntuusers.de/qt-fsarchiver] 
 =========================================================================================================
-* qt-fsarchiverterminal-0.8.5-8 10. April 2019.
+* qt-fsarchiverterminal-0.8.5-10 10. Mai 2019.
+    - Anzeige von Partitionsarten, die nicht bearbeitet werden können.
+* qt-fsarchiverterminal-0.8.5-10 10. April 2019.
     - Leerstellen in Verzeichnisnamen werden korrekt bearbeitet.
 * qt-fsarchiverterminal-0.8.5-0 30. Oktober 2018.
     - qt-fsarchiver wurde aufgeteilt in ein Oberflächenprogramm qt-fsarchiver und in ein Terminalprogramm qt-fsarchiver-terminal.

@@ -58,10 +58,12 @@ int partlist_getlist(struct s_devinfo *blkdev, int maxblkdev, int *diskcount, in
     *partcount=0;
     
     // browse list in "/proc/partitions"
-    if ((fpart=fopen("/proc/partitions","rb"))==NULL)
+   // if ((fpart=fopen("home/dieter/Schreibtisch/disk2.txt","rb"))==NULL)
+     if ((fpart=fopen("/proc/partitions","rb"))==NULL)
         return -1;
     while(!feof(fpart) && (count < FSA_MAX_BLKDEVICES) && (count < maxblkdev))
     {
+printf("count FSA_MAX_BLKDEVICES maxblkdevices %lld %lld %lld", count, FSA_MAX_BLKDEVICES, maxblkdev);
         if (stream_readline(fpart, line, sizeof(line))>1)
         {
             minor[0]=major[0]=0;
@@ -74,31 +76,38 @@ int partlist_getlist(struct s_devinfo *blkdev, int maxblkdev, int *diskcount, in
                 {
                     case 0: // col0 = major
                         snprintf(major, sizeof(major), "%s", result);
+                        printf("result major %s", result);
                         break;
                     case 1: // col1 = minor
                         snprintf(minor, sizeof(minor), "%s", result);
+                        printf("minor %s", result);
                         break;
                     case 3: // col3 = devname
                         snprintf(devname, sizeof(devname), "%s", result);
+                        printf("devname %s", result);
                         break;
                 }
                 result = strtok_r(NULL, delims, &saveptr);
+                
             }
             
             // ignore invalid entries
             if ((strlen(devname)==0) || (atoi(major)==0 && atoi(minor)==0))
                 continue;
             snprintf(longname, sizeof(longname), "/dev/%s", devname);
+            printf("/dev/%s", devname);
             if (get_devinfo(&tmpdev, longname, atoi(minor), atoi(major))!=0)
                continue; // to to the next part
             
             // check that this device is not already in the list
             for (i=0; i < count; i++)
                 if (blkdev1[i].rdev==tmpdev.rdev)
+           printf("/blkdev1/%s", blkdev1[i].rdev);
                     continue; // to to the next part
             
             // add the device to list if it is a real device and it's not already in the list
             blkdev1[count++]=tmpdev;
+           printf("/blkdev1/%s", blkdev1[count++]);
         }
     }
     
@@ -127,6 +136,7 @@ int partlist_getlist(struct s_devinfo *blkdev, int maxblkdev, int *diskcount, in
         }
         // move item to the new array
         blkdev[pos++]=blkdev1[best];
+printf("/blkdev/%s", blkdev[pos++]);
         blkdev1[best].rdev=0;
     }
 

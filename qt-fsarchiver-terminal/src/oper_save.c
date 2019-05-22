@@ -970,6 +970,8 @@ int filesystem_mount_partition(cdevinfo *devinfo, cdico *dicofsinfo, u16 fsid)
     int count;
     int res;
     int i;
+    char home[100];
+    char filename[100] = ".config/qt-fsarchiver/zahlen.txt";
     
     res=generic_get_mntinfo(devinfo->devpath, &readwrite, curmntdir, sizeof(curmntdir), optbuf, sizeof(optbuf), fsbuf, sizeof(fsbuf));
     if (res==0) // partition is already mounted
@@ -1077,6 +1079,12 @@ int filesystem_mount_partition(cdevinfo *devinfo, cdico *dicofsinfo, u16 fsid)
         }
         if (tmptype==-1)
         {   errprintf("cannot mount partition [%s]: filesystem may not be supported by either fsarchiver or the kernel.\n", devinfo->devpath);
+            strcpy(home, home1);
+               strcat(home, filename);
+               FILE *fp;
+               fp = fopen(home, "a");
+               fprintf(fp, "%d %s\n", 110, "d");
+               fclose(fp);
             return -1;
         }
         devinfo->fstype=tmptype;

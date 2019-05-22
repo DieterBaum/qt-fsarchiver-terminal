@@ -1,11 +1,11 @@
 # qt-fsarchiver-terminal
 qt-fsarchiver-terminal is required for qt-fsarchiver (https://github.com/dieterbaum/qt-fsarchiver)to work correctly.
-qt-fsarchiver: Back up and restore partitions, directories for Debian,Ubuntu, Linux-Mint, Suse and Fedora [http://wiki.ubuntuusers.de/qt4-fsarchiver]
+qt-fsarchiver: Back up and restore partitions, directories for Debian,Ubuntu, Linux-Mint, Suse and Fedora [http://wiki.ubuntuusers.de/qt-fsarchiver]
 qt-fsarchiver can clone and image hard disks too.
 
 Both programs must be installed.
 
-Copyright (C) 2008-2018 Francois Dupoux and Dieter Baum.  All rights reserved.
+Copyright (C) 2008-2019 Francois Dupoux and Dieter Baum.  All rights reserved.
 Copying the files is permitted with or without modifications. The code is without warranty of any kind. Use at your own risk.
 
 François Dupoux has developed the basic program fsarchiver, Dieter Baum created the GUI and the code to use the GUI.
