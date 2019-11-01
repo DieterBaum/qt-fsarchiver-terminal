@@ -1,17 +1,14 @@
 # qt-fsarchiver-terminal
-qt-fsarchiver-terminal is required for qt-fsarchiver (https://github.com/dieterbaum/qt-fsarchiver)to work correctly.
-qt-fsarchiver: Back up and restore partitions, directories for Debian,Ubuntu, Linux-Mint, Suse and Fedora [http://wiki.ubuntuusers.de/qt-fsarchiver]
-qt-fsarchiver can clone and image hard disks too.
-
-Both programs must be installed.
-
 Copyright (C) 2008-2019 Francois Dupoux and Dieter Baum.  All rights reserved.
 Copying the files is permitted with or without modifications. The code is without warranty of any kind. Use at your own risk.
 
-François Dupoux has developed the basic program fsarchiver, Dieter Baum created the GUI and the code to use the GUI.
+François Dupoux has developed the basic program fsarchiver, Hihin Ruslan has improved the program and tranlate to englisch und russian. Michael R. Lawrence and his team translated to Spanish and Italian, Zhenneng Li translated to Chinese, Dieter Baum created the GUI and the code to use the GUI.
+
+qt4-fsarchiver was translated QT5 environment and renamed in qt-fsarchiver.
 
 qt-fsarchiver a program with a graphical interface for easy operation the archiving program fsarchiver.
-qt-fsarchiver has been split into a program with a graphical user interface (qt-fsarchiver)and a terminal program (qt-fsarchiver-terminal).
+qt-fsarchiver has been split into a program with a graphical user interface and a terminal program.
+Both programs must be installed.
 The graphical program can be started without root rights.
 Thus the startup problems with gksu/gksudo, which is no longer installable, were solved with Wayland and Snap programs.
 
@@ -33,11 +30,11 @@ Instead of libzst1-dev, libzst-dev is installed in some systems. btrfs-tools has
 The command for Suse: (you must be an administrator su -l) zypper in zypper in qt5-default libQt5Core5 libqt5-qttools libqt5-qtbase-devel make libzip-devel libbz2-devel xz-devel lzo-devel libgcrypt-devel e2fsprogs-devel libblkid-devel libattr-devel btrfsprogs gdisk sshfs nmap samba nfs-kernel-server xfsprogs liblz4-1 liblz4-devel libzstd1 libzstd-devel zlib-devel jfsutils 
 If you use ssh (secure shell) want to access other computers in the network, you still need to install individually sshpass.
 
-The command for Fedora: (you must be an administrator su -l) dnf install  gcc gcc-c++ zlib-devel bzip2-devel xz-devel lzo-devel libgcrypt-devel e2fsprogs-devel libblkid-devel libattr-devel qt5-default qt5-qtbase qt5-qtbase-devel gdisk sshfs sshpass nmap samba samba-client nfs-utils beesu lz4-devel libzstd-devel jfsutils xfsprogs
-For a 64-bit system, you must also install lrelease: dnf install qt5-linguist.x86-64
+The command for Fedora: (you must be an administrator su -l) dnf install  gcc gcc-c++ zlib-devel bzip2-devel xz-devel lzo-devel libgcrypt-devel e2fsprogs-devel libblkid-devel libattr-devel qt5-default qt5-qtbase qt5-qtbase-devel gdisk sshfs sshpass nmap samba samba-client nfs-utils lz4-devel libzstd-devel jfsutils xfsprogs
+For a 64-bit system, you must also install lrelease: dnf install qt5-linguist.x86-64. With Fediora30 you still have to install make.
 32-bit systems are no longer supported.
 
-You change in the terminal to the folder qt-fsarchiver-terminal (extracted from the sources).
+You change in the terminal to the folder qt5-fsarchiver (extracted from the sources).
 This is the command to install the program with Debian, Ubuntu  and und Mint: /usr/lib/x86_64-linux-gnu/qt5/bin/qmake && make && sudo make install
 In Debian you must instead sudo make install this: su -l, make install
 This is the command for Fedora and Suse: qmake-qt5 && make && sudo make install.

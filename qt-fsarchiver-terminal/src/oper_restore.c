@@ -1663,7 +1663,7 @@ do_extract_success:
     return ret;
 }
 
-int wert_save(int zahl, char *buchstabe)
+void wert_save(int zahl, char *buchstabe)
 {
     char home[100];
     char filename[100] = ".config/qt-fsarchiver/zahlen.txt";

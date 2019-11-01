@@ -21,7 +21,7 @@
 #include "dico.h"
 
 int oper_restore(char *archive, int argc, char **argv, int oper);
-int wert_save(int zahl, char *buchstabe);
+void wert_save(int zahl, char *buchstabe);
 
 #endif // __OPER_RESTORE_H__
 
