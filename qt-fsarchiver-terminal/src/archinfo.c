@@ -81,11 +81,13 @@ int archinfo_show_mainhead(carchreader *ai, cdico *dicomainhead)
     printf("\n"); 
    // meldungen_uebergeben(cryptalgostr(ai->cryptalgo),1); 
      char filename[100] = ".config/qt-fsarchiver/zahlen.txt";
+     char crypt[100] = "none";
      strcpy(home, home1);
      strcat(home, filename);
     FILE *fp1;
     fp1 = fopen(home, "a");
-    if (cryptalgostr(ai->cryptalgo) == "none")
+    if (cryptalgostr(ai->cryptalgo) == crypt)
+   // if (cryptalgostr(ai->cryptalgo) == "none")
        fprintf(fp1, "%s %s\n", "none", "s");
     if ((ai->archtype==ARCHTYPE_FILESYSTEMS))
        fprintf(fp1, "%s %s\n", "sys", "o");
