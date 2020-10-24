@@ -87,7 +87,6 @@ int archinfo_show_mainhead(carchreader *ai, cdico *dicomainhead)
     FILE *fp1;
     fp1 = fopen(home, "a");
     if (cryptalgostr(ai->cryptalgo) == crypt)
-   // if (cryptalgostr(ai->cryptalgo) == "none")
        fprintf(fp1, "%s %s\n", "none", "s");
     if ((ai->archtype==ARCHTYPE_FILESYSTEMS))
        fprintf(fp1, "%s %s\n", "sys", "o");

@@ -64,10 +64,10 @@ typedef struct s_extractar
     u64         cost_global;
     u64         cost_current;
 } cextractar;
-long long anzahlfile; 
-	float progress; 
-	int zeitflag = 0;
-	int symlink_ = 0;
+
+//float progress; 
+int zeitflag = 0;
+int symlink_ = 0;
 
 // returns true if this file of a parent directory has been excluded
 int is_filedir_excluded(char *relpath)
@@ -174,13 +174,14 @@ int convert_argv_to_strdicos(cstrdico *dicoargv[], int argc, char *cmdargv[])
 int extractar_listing_print_file(cextractar *exar, int objtype, char *relpath)
 {
     char strprogress[256];
+    float progress; 
      
     memset(strprogress, 0, sizeof(strprogress));
     if (exar->cost_global>0)
     {
         progress=(((exar->cost_current)*100)/(exar->cost_global));
         if (progress>=0 && progress<=100)
-            snprintf(strprogress, sizeof(strprogress), "[%3d%%]", (int)progress);
+            snprintf(strprogress, sizeof(strprogress), "[%3d%%]", progress);
     }
     msgprintf(MSG_VERB1, "-[%.2d]%s[%s] %s\n", exar->fsid, strprogress, get_objtype_name(objtype), relpath);
     /// Terminal Ausgabe 

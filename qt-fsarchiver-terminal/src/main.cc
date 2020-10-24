@@ -43,7 +43,7 @@ int main(int argc, char **argv)
     aufruf = argv[2];
     if (homepath == "version")
     {
-       qDebug() << "Version: 0.8.5-12";
+       qDebug() << "Version: 0.8.5-18";
        return 1;
     }
     if (aufruf == "version")
@@ -52,7 +52,7 @@ int main(int argc, char **argv)
     QFile file(filename);
     file.open(QIODevice::WriteOnly);
     QDataStream out(&file);
-    out << QString("0.8.5-12");
+    out << QString("0.8.5-18");
     file.close();
     return 1;
     }
@@ -63,7 +63,6 @@ int fsarchiver_aufruf(int argc, char *anlage0=NULL, char *anlage1=NULL, char *an
 {
     QString dummy;
     int found = 0;
-    int i = 0;
     string filename;
     const char *filename1;
     char *argv[15];

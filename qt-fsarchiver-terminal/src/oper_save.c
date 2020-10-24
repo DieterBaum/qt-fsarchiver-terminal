@@ -83,8 +83,8 @@ typedef struct s_devinfo
     int         fstype;
 } cdevinfo;
   int meldeflag = 0; 
-	long long anzahlfile = 0; 
-	float progress = 0; 
+  //long long anzahlfile = 0; 
+  float progress = 0; 
 
 int createar_obj_regfile_multi(csavear *save, cdico *header, char *relpath, char *fullpath, u64 filesize)
 {
@@ -421,6 +421,8 @@ int createar_item_stdattr(csavear *save, char *root, char *relpath, struct stat6
     char filename[100] = ".config/qt-fsarchiver/anzahl_file.txt";
     char filename1[100] = ".config/qt-fsarchiver/prozent.txt";
     char filename2[100] = ".config/qt-fsarchiver/anzahlfile.txt";
+    long long anzahlfile = 0;
+    //float progress = 0; 
     // init
     flags=0;
     *objtype=OBJTYPE_NULL;
@@ -627,6 +629,7 @@ int createar_save_file(csavear *save, char *root, char *relpath, struct stat64 *
     u64 filecost;
     int objtype;
     int res;
+    //float progress = 0; 
     
     // init    
     concatenate_paths(fullpath, sizeof(fullpath), root, relpath);
