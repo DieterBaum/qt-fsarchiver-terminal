@@ -102,7 +102,11 @@ SOURCES += src/archinfo.c \
            src/thread_comp.c \
            src/writebuf.c
 # install
+ isEmpty(DOC_DIR) {
+   DOC_DIR = /usr/share/doc/qt-fsarchiver-terminal
+ }
+
  target.path = /usr/sbin
- doc.files = doc
- doc.path = /usr/share/doc/qt-fsarchiver-terminal/doc
+ doc.files = doc/*
+ doc.path = $$DOC_DIR
 INSTALLS = target doc
