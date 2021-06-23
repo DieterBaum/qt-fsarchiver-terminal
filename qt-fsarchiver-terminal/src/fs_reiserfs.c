@@ -1,6 +1,6 @@
 /*
  * fsarchiver: Filesystem Archiver
- * 
+ *
  * Copyright (C) 2008-2018 Francois Dupoux.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or
@@ -52,8 +52,6 @@ int reiserfs_mkfs(cdico *d, char *partition, char *fsoptions, char *mkfslabel, c
     // ---- set the advanced filesystem settings from the dico
     memset(options, 0, sizeof(options));
 
-    strlcatf(options, sizeof(options), " %s ", fsoptions);
-
     if (strlen(mkfslabel) > 0)
         strlcatf(options, sizeof(options), " -l '%.16s' ", mkfslabel);
     else if (dico_get_string(d, 0, FSYSHEADKEY_FSLABEL, buffer, sizeof(buffer))==0 && strlen(buffer)>0)
@@ -66,8 +64,11 @@ int reiserfs_mkfs(cdico *d, char *partition, char *fsoptions, char *mkfslabel, c
         strlcatf(options, sizeof(options), " -u %s ", mkfsuuid);
     else if (dico_get_string(d, 0, FSYSHEADKEY_FSUUID, buffer, sizeof(buffer))==0 && strlen(buffer)==36)
         strlcatf(options, sizeof(options), " -u %s ", buffer);
-    
-    if (exec_command(command, sizeof(command), &exitst, NULL, 0, NULL, 0, "mkreiserfs -f %s %s", partition, options)!=0 || exitst!=0)
+
+    // ---- mkfsopt from command line
+    strlcatf(options, sizeof(options), " %s ", fsoptions);
+
+    if (exec_command(command, sizeof(command), &exitst, NULL, 0, NULL, 0, "mkreiserfs -f %s %s", options, partition)!=0 || exitst!=0)
     {   errprintf("command [%s] failed\n", command);
         return -1;
     }
@@ -189,5 +190,3 @@ int reiserfs_get_reqmntopt(char *partition, cstrlist *reqopt, cstrlist *badopt)
     
     return 0;
 }
-
-

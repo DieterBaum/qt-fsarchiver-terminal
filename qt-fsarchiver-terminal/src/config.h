@@ -49,9 +49,6 @@
 /* Define to 1 if you have the <malloc.h> header file. */
 #define HAVE_MALLOC_H 1
 
-/* Define to 1 if you have the <memory.h> header file. */
-#define HAVE_MEMORY_H 1
-
 /* Define to 1 if you have the `mempcpy' function. */
 #define HAVE_MEMPCPY 1
 
@@ -146,10 +143,10 @@
 #define PACKAGE_NAME "fsarchiver"
 
 /* Define the date of the release */
-#define PACKAGE_RELDATE "2018-02-19"
+#define PACKAGE_RELDATE "2021-02-27"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "fsarchiver 0.8.4"
+#define PACKAGE_STRING "fsarchiver 0.8.6"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "fsarchiver"
@@ -158,7 +155,7 @@
 #define PACKAGE_URL ""
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "0.8.4"
+#define PACKAGE_VERSION "0.8.6"
 
 /* Major version number */
 #define PACKAGE_VERSION_A 0
@@ -167,21 +164,18 @@
 #define PACKAGE_VERSION_B 8
 
 /* Minor version number */
-#define PACKAGE_VERSION_C 4
+#define PACKAGE_VERSION_C 6
 
 /* Patch version number */
 #define PACKAGE_VERSION_D 0
 
-/* Define to 1 if you have the ANSI C header files. */
+/* Define to 1 if all of the C90 standard headers exist (not just the ones
+   required in a freestanding environment). This macro is provided for
+   backward compatibility; new code need not use it. */
 #define STDC_HEADERS 1
 
 /* Version number of package */
-#define VERSION "0.8.4"
-
-/* Enable large inode numbers on Mac OS X 10.5.  */
-#ifndef _DARWIN_USE_64_BIT_INODE
-# define _DARWIN_USE_64_BIT_INODE 1
-#endif
+#define VERSION "0.8.6"
 
 /* Number of bits in a file offset, on hosts where this is settable. */
 /* #undef _FILE_OFFSET_BITS */

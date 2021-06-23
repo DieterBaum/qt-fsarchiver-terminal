@@ -1,6 +1,6 @@
 /*
  * fsarchiver: Filesystem Archiver
- * 
+ *
  * Copyright (C) 2008-2018 Francois Dupoux.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or
@@ -180,5 +180,3 @@ struct btrfs_super_block
 } __attribute__ ((__packed__));
 
 #endif // __FS_BTRFS_H__
-
-

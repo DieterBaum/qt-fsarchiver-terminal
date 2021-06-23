@@ -1,7 +1,7 @@
 /*
  * fsarchiver: Filesystem Archiver
  *
- * Copyright (C) 2008-2016 Francois Dupoux.  All rights reserved.
+ * Copyright (C) 2008-2018 Francois Dupoux.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -51,5 +51,6 @@ u64 stats_errcount(struct s_stats stats);
 int exclude_check(struct s_strlist *patlist, char *string);
 int get_path_to_volume(char *newvolbuf, int bufsize, char *basepath, long curvol);
 s64 get_device_size(char *partition);
+bool match_uname_r(char *ere);
 
 #endif // __COMMON_H__

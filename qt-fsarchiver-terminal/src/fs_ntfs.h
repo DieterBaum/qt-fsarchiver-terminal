@@ -1,6 +1,6 @@
 /*
  * fsarchiver: Filesystem Archiver
- * 
+ *
  * Copyright (C) 2008-2018 Francois Dupoux.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or
@@ -42,5 +42,3 @@ int ntfs_umount(char *partition, char *mntbuf);
 int ntfs_test(char *devname);
 
 #endif // __FS_NTFS_H__
-
-

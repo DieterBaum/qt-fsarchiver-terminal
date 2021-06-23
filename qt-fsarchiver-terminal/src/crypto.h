@@ -1,6 +1,6 @@
 /*
  * fsarchiver: Filesystem Archiver
- * 
+ *
  * Copyright (C) 2008-2018 Francois Dupoux.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or
@@ -26,5 +26,3 @@ int crypto_random(u8 *buf, int bufsize);
 int crypto_cleanup();
 
 #endif // __CRYPTO_H__
-
-

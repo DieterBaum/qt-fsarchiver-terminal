@@ -1,6 +1,6 @@
 /*
  * fsarchiver: Filesystem Archiver
- * 
+ *
  * Copyright (C) 2008-2018 Francois Dupoux.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or
@@ -21,8 +21,5 @@
 #include "dico.h"
 
 int oper_restore(char *archive, int argc, char **argv, int oper);
-void wert_save(int zahl, char *buchstabe);
 
 #endif // __OPER_RESTORE_H__
-
-

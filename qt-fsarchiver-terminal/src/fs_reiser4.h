@@ -1,6 +1,6 @@
 /*
  * fsarchiver: Filesystem Archiver
- * 
+ *
  * Copyright (C) 2008-2018 Francois Dupoux.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or
@@ -60,5 +60,3 @@ struct reiser4_master_sb
 } __attribute__((packed));*/
 
 #endif // __FS_REISER4_H__
-
-

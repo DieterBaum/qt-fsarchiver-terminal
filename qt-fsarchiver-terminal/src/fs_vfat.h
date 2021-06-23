@@ -1,6 +1,6 @@
 /*
  * fsarchiver: Filesystem Archiver
- * 
+ *
  * Copyright (C) 2008-2018 Francois Dupoux.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or
@@ -53,5 +53,3 @@ struct vfat_superblock
 } __attribute__((packed));
 
 #endif // __FS_VFAT_H__
-
-

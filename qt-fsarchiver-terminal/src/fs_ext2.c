@@ -51,13 +51,22 @@ struct s_features
 };
 
 // These are the features to be passed on the command line (cf "man ext4")
-struct s_features mkfeatures[] = // cf e2fsprogs-1.44.0/lib/e2p/feature.c
+//
+// metadata_csum_seed feature allows UUID change on mounted filesystems and configures an incompat
+// flag (EXT4_FEATURE_INCOMPAT_CSUM_SEED) bumping minimum kernel version to linux-4.4. Since
+// FSArchiver always creates the filesystem from scratch and sets up the UUID via mke2fs -U in
+// case metadata_csum is going to be used (mke2fs 1.43+), metadata_csum_seed brings no value for
+// us and therefore is not preserved (i.e. present in FSA_FEATURE_INCOMPAT_SUPP but not listed
+// below). Users can easily enable it with tune2fs if desired.
+//
+struct s_features mkfeatures[] = // cf e2fsprogs-1.46.0/lib/e2p/feature.c
 {
     {"has_journal",   FSA_EXT3_FEATURE_COMPAT_HAS_JOURNAL,      E2P_FEATURE_COMPAT,      EXTFSTYPE_EXT3, PROGVER(1,39,0)},
     {"ext_attr",      FSA_EXT2_FEATURE_COMPAT_EXT_ATTR,         E2P_FEATURE_COMPAT,      EXTFSTYPE_EXT2, PROGVER(1,40,5)},
     {"resize_inode",  FSA_EXT2_FEATURE_COMPAT_RESIZE_INODE,     E2P_FEATURE_COMPAT,      EXTFSTYPE_EXT2, PROGVER(1,39,0)},
     {"dir_index",     FSA_EXT2_FEATURE_COMPAT_DIR_INDEX,        E2P_FEATURE_COMPAT,      EXTFSTYPE_EXT2, PROGVER(1,33,0)},
     {"sparse_super2", FSA_EXT4_FEATURE_COMPAT_SPARSE_SUPER2,    E2P_FEATURE_COMPAT,      EXTFSTYPE_EXT4, PROGVER(1,42,10)},
+    {"fast_commit",   FSA_EXT4_FEATURE_COMPAT_FAST_COMMIT,      E2P_FEATURE_COMPAT,      EXTFSTYPE_EXT4, PROGVER(1,46,0)},
     {"filetype",      FSA_EXT2_FEATURE_INCOMPAT_FILETYPE,       E2P_FEATURE_INCOMPAT,    EXTFSTYPE_EXT2, PROGVER(1,16,0)},
     {"extent",        FSA_EXT4_FEATURE_INCOMPAT_EXTENTS,        E2P_FEATURE_INCOMPAT,    EXTFSTYPE_EXT4, PROGVER(1,41,0)},
     {"journal_dev",   FSA_EXT3_FEATURE_INCOMPAT_JOURNAL_DEV,    E2P_FEATURE_INCOMPAT,    EXTFSTYPE_EXT3, PROGVER(1,39,0)},
@@ -201,8 +210,6 @@ int extfs_mkfs(cdico *d, char *partition, int extfstype, char *fsoptions, char *
 
     // "mke2fs -F" removes confirmation prompt when device is a whole disk such as /dev/sda
     strlcatf(options, sizeof(options), " -F ");
-
-    strlcatf(options, sizeof(options), " %s ", fsoptions);
 
     strlcatf(options, sizeof(options), " -b %ld ", (long)devblksize);
 
@@ -367,9 +374,12 @@ int extfs_mkfs(cdico *d, char *partition, int extfstype, char *fsoptions, char *
     if ((dico_get_u64(d, 0, FSYSHEADKEY_FSEXTEOPTRAIDSTRIPEWIDTH, &temp64)==0) && e2fstoolsver>=PROGVER(1,40,7))
         strlcatf(options, sizeof(options), " -E stripe-width=%ld ", (long)temp64);
 
+    // ---- mkfsopt from command line
+    strlcatf(options, sizeof(options), " %s ", fsoptions);
+
     // ---- execute mke2fs
     msgprintf(MSG_VERB2, "exec: %s\n", command);
-    if (exec_command(command, sizeof(command), &exitst, NULL, 0, NULL, 0, "%s %s %s", progname, partition, options)!=0 || exitst!=0)
+    if (exec_command(command, sizeof(command), &exitst, NULL, 0, NULL, 0, "%s %s %s", progname, options, partition)!=0 || exitst!=0)
     {   errprintf("command [%s] failed with return status=%d\n", command, exitst);
         ret=-1;
         goto extfs_mkfs_cleanup;
@@ -392,7 +402,7 @@ int extfs_mkfs(cdico *d, char *partition, int extfstype, char *fsoptions, char *
 
     if (options[0])
     {
-        if (exec_command(command, sizeof(command), &exitst, NULL, 0, NULL, 0, "tune2fs %s %s", partition, options)!=0 || exitst!=0)
+        if (exec_command(command, sizeof(command), &exitst, NULL, 0, NULL, 0, "tune2fs %s %s", options, partition)!=0 || exitst!=0)
         {   errprintf("command [%s] failed with return status=%d\n", command, exitst);
             ret=-1;
             goto extfs_mkfs_cleanup;

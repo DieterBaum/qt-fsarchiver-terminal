@@ -1,6 +1,6 @@
 /*
  * fsarchiver: Filesystem Archiver
- * 
+ *
  * Copyright (C) 2008-2018 Francois Dupoux.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or
@@ -733,5 +733,3 @@ s64 queue_destroy_first_item(cqueue *q)
     pthread_cond_broadcast(&q->cond);
     return FSAERR_SUCCESS;
 }
-
-

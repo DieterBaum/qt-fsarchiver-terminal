@@ -1,6 +1,6 @@
 /*
  * fsarchiver: Filesystem Archiver
- * 
+ *
  * Copyright (C) 2008-2018 Francois Dupoux.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or
@@ -76,5 +76,3 @@ typedef struct
 #define atomic_set(v,i) (((v)->counter) = (i))
 
 #endif // __TYPES_H__
-
-

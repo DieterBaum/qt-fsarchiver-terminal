@@ -1,6 +1,6 @@
 /*
  * fsarchiver: Filesystem Archiver
- * 
+ *
  * Copyright (C) 2008-2018 Francois Dupoux.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or
@@ -69,5 +69,3 @@ struct reiserfs_super_block
 };
 
 #endif // __FS_REISERFS_H__
-
-

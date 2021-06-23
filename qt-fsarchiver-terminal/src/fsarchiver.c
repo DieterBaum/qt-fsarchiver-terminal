@@ -194,23 +194,6 @@ int process_cmdline(int argc, char **argv)
     g_options.encryptalgo=ENCRYPT_NONE;
     snprintf(g_options.archlabel, sizeof(g_options.archlabel), "<none>");
     g_options.encryptpass[0]=0;
-
-    // set default compression mode
-#ifdef OPTION_ZSTD_SUPPORT
-    g_options.fsacomplevel=FSA_DEF_ZSTD_LEVEL;
-    g_options.compressalgo=COMPRESS_ZSTD;
-    g_options.compresslevel=FSA_DEF_ZSTD_LEVEL;
-#else
-    g_options.fsacomplevel=3; // fsa level 3 = "gzip -6"
-    g_options.compressalgo=FSA_DEF_COMPRESS_ALGO;
-    g_options.compresslevel=FSA_DEF_COMPRESS_LEVEL; // default level for gzip
-#endif // OPTION_ZSTD_SUPPORT
-
-    //  mehrmaliger Aufruf fsarchiver möglich!! 
-    optind = 1; 
-    optopt = 63; 
-    optarg = 0; 
-    //Aus unbekanntem Grund wird der nachfolgende c Aufruf erforderlich, sonst klappt der wiederholte fsarchiver Aufruf nicht 
     c = getopt_long(argc, argv, "oaAvdj:hVs:c:L:e:xz:Z:", long_options, NULL); 
     c = getopt_long(argc, argv, "oaAvdj:hVs:c:L:e:xz:Z:", long_options, NULL); 
     c = getopt_long(argc, argv, "oaAvdj:hVs:c:L:e:xz:Z:", long_options, NULL); 
@@ -308,7 +291,7 @@ int process_cmdline(int argc, char **argv)
                 }
 #else
                 errprintf("zstd compression is not available as its support has been disabled at compilation time\n");
-              //  return -1;
+                return -1;
 #endif // OPTION_ZSTD_SUPPORT
                 break;
             case 'c': // encryption
@@ -395,10 +378,10 @@ int process_cmdline(int argc, char **argv)
     }
 
     // check if must be run as root
-/*    if (runasroot==true && geteuid()!=0)
+    if (runasroot==true && geteuid()!=0)
     {   errprintf("\"fsarchiver %s\" must be run as root. cannot continue.\n", command);
-       // return -1;
-    }*/
+        return -1;
+    }
 
     // interactive password
     if (strcmp((char*)g_options.encryptpass, "-")==0)

@@ -1,6 +1,6 @@
 /*
  * fsarchiver: Filesystem Archiver
- * 
+ *
  * Copyright (C) 2008-2018 Francois Dupoux.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or
@@ -53,8 +53,6 @@ int ntfs_mkfs(cdico *d, char *partition, char *fsoptions, char *mkfslabel, char 
     // ---- set the advanced filesystem settings from the dico
     memset(options, 0, sizeof(options));
 
-    strlcatf(options, sizeof(options), " %s ", fsoptions);
-
     if (strlen(mkfslabel) > 0)
         strlcatf(options, sizeof(options), " --label '%s' ", mkfslabel);
     else if (dico_get_string(d, 0, FSYSHEADKEY_FSLABEL, buffer, sizeof(buffer))==0 && strlen(buffer)>0)
@@ -65,8 +63,11 @@ int ntfs_mkfs(cdico *d, char *partition, char *fsoptions, char *mkfslabel, char 
     
     if (dico_get_u32(d, 0, FSYSHEADKEY_NTFSCLUSTERSIZE, &temp32)==0)
         strlcatf(options, sizeof(options), " -c %ld ", (long)temp32);
-    
-    if (exec_command(command, sizeof(command), &exitst, NULL, 0, NULL, 0, "mkfs.ntfs -f %s %s", partition, options)!=0 || exitst!=0)
+
+    // ---- mkfsopt from command line
+    strlcatf(options, sizeof(options), " %s ", fsoptions);
+
+    if (exec_command(command, sizeof(command), &exitst, NULL, 0, NULL, 0, "mkfs.ntfs -f %s %s", options, partition)!=0 || exitst!=0)
     {   errprintf("command [%s] failed\n", command);
         return -1;
     }
@@ -289,5 +290,3 @@ int ntfs_replace_uuid(char *devname, u64 uuid)
     close(fd);
     return 0;
 }
-
-

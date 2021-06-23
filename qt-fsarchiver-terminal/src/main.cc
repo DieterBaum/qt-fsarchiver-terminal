@@ -43,7 +43,7 @@ int main(int argc, char **argv)
     aufruf = argv[2];
     if (homepath == "version")
     {
-       qDebug() << "Version: 0.8.5-22";
+       qDebug() << "Version: 0.8.6.0";
        return 1;
     }
     if (aufruf == "version")
@@ -52,7 +52,7 @@ int main(int argc, char **argv)
     QFile file(filename);
     file.open(QIODevice::WriteOnly);
     QDataStream out(&file);
-    out << QString("0.8.5-22");
+    out << QString("0.8.6-02");
     file.close();
     return 1;
     }

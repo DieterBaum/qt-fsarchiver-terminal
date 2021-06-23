@@ -1,6 +1,6 @@
 /*
  * fsarchiver: Filesystem Archiver
- * 
+ *
  * Copyright (C) 2008-2018 Francois Dupoux.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or
@@ -54,5 +54,3 @@ char *format_prog_version(u64 version, char *bufdat, int buflen);
 int generic_umount(char *mntbuf);
 
 #endif // __FILESYS_H__
-
-

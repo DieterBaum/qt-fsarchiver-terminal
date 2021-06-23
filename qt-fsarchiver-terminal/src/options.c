@@ -1,7 +1,7 @@
 /*
  * fsarchiver: Filesystem Archiver
  *
- * Copyright (C) 2008-2016 Francois Dupoux.  All rights reserved.
+ * Copyright (C) 2008-2018 Francois Dupoux.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -48,12 +48,13 @@ int options_select_compress_level(int opt)
     switch (opt)
     {
 #ifdef OPTION_LZ4_SUPPORT
-	case 0: // lz4
-	    g_options.compressalgo=COMPRESS_LZ4;
-	    break;
+        case 0: // lz4
+            g_options.compressalgo=COMPRESS_LZ4;
+            break;
 #else
-	case 0: // lz4
+        case 0: // lz4
             errprintf("compression level %d is not available: lz4 has been disabled at compilation time\n", opt);
+            return -1;
 #endif // OPTION_LZ4_SUPPORT
 #ifdef OPTION_LZO_SUPPORT
         case 1: // lzo
