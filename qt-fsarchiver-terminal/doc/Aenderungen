@@ -1,6 +1,8 @@
 =========================================================================================================
 * qt-fsarchiver-terminal: Terminal Programm für qt-fsarchiver [http://wiki.ubuntuusers.de/qt-fsarchiver] 
 =========================================================================================================
+* qt-fsarchiverterminal-0.8.6-3 15. September 2021.
+    - mit erforderlichen Anpassungen an qt-fsarchiver Version 0.6.8-3.
 * qt-fsarchiverterminal-0.8.5-22 22. Mai 2021.
     - Pfad der doc-Dateien geändert.
 * qt-fsarchiverterminal-0.8.5-12 3. November 2019.

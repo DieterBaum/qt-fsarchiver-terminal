@@ -479,7 +479,17 @@ int process_cmdline(int argc, char **argv)
 int fsarchiver_main(int argc, char **argv)
 {
     int ret;
-
+/*
+printf("[%s] Eingabe 0.\n", argv[0]);
+printf("[%s] Eingabe 1.\n", argv[1]);
+printf("[%s] Eingabe 2.\n", argv[2]);
+printf("[%s] Eingabe 3.\n", argv[3]);
+printf("[%s] Eingabe 4.\n", argv[4]);
+printf("[%s] Eingabe 5.\n", argv[5]);
+printf("[%s] Eingabe 6.\n", argv[6]);
+printf("[%s] Eingabe 7.\n", argv[7]);
+printf("[%s] Eingabe 8.\n", argv[8]);
+*/
     // init the lzo library
 #ifdef OPTION_LZO_SUPPORT
     if (lzo_init() != LZO_E_OK)

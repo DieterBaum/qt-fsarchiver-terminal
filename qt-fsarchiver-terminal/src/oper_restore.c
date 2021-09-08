@@ -229,7 +229,7 @@ int extractar_restore_attr_xattr(cextractar *exar, u32 objtype, char *fullpath, 
         if ((res=lsetxattr(fullpath, xattrname, xattrvalue, xattrdatasize, 0))!=0)
         {   sysprintf("xattr:lsetxattr(%s,%s) failed\n", relpath, xattrname);
             symlink_ = symlink_ + 1; 
-            wert_save(108,"d");
+            wert_save (108,"d");
             ret=-1;
         }
         else // success
@@ -895,8 +895,8 @@ int extractar_restore_obj_regfile_unique(cextractar *exar, char *fullpath, char 
 restore_obj_regfile_unique_end:
     if (delfile==true)
     {   errprintf("removing %s\n", fullpath);
-        unlink(fullpath);
-    }
+        wert_save (106,"d");
+    }    
     
     if (excluded!=true)
     {
