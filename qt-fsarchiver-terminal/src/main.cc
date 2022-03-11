@@ -44,7 +44,7 @@ int main(int argc, char **argv)
     aufruf = argv[2];
     if (homepath == "version")
     {
-       qDebug() << "Version: 0.8.6-3";
+       qDebug() << "Version: 0.8.6-7";
        return 1;
     }
     if (aufruf == "version")
@@ -53,7 +53,7 @@ int main(int argc, char **argv)
     QFile file(filename);
     file.open(QIODevice::WriteOnly);
     QDataStream out(&file);
-    out << QString("0.8.6-03");
+    out << QString("0.8.6-07");
     file.close();
     return 1;
     }
@@ -64,6 +64,7 @@ int fsarchiver_aufruf(int argc, char *anlage0=NULL, char *anlage1=NULL, char *an
 {
     QString dummy;
     QString name1;
+    QString name2;
     string stra;
     string filename;
     const char *filename1;
@@ -71,9 +72,9 @@ int fsarchiver_aufruf(int argc, char *anlage0=NULL, char *anlage1=NULL, char *an
     char * convert;
     char *argv[15];
     int ret = 0;
+    int pos1 = 0;
     string str;
-    std::size_t pos = 0;
- 
+   
     argv[0] = anlage0;
     argv[1] = anlage1;
     argv[2] = anlage2;
@@ -90,50 +91,47 @@ int fsarchiver_aufruf(int argc, char *anlage0=NULL, char *anlage1=NULL, char *an
     argv[13] = anlage13;
     argv[14] = anlage14;
 
-    if (parameter[1] == "savefs" or parameter[1] == "restfs" or parameter[1] == "restdir" or parameter[1] == "savedir")
+      if (parameter[1] == "savefs" or parameter[1] == "restfs" or parameter[1] == "restdir" or parameter[1] == "savedir")
       {
-      name1 = parameter[argc-2];
-      stra= name1.toStdString();
-      pos = stra.find("'",0);
-      if(pos==0)
-        {
-        // ' muss entfernt werden
-          while(1)
-          {
-          string::size_type loc = stra.find( "'", 0 );
-	    if( loc != string::npos )
-	    	stra.replace(loc,1,"");
-	    else
-	    	break;
-	  }
-        }
-      c = stra.c_str();
-      convert = const_cast<char *>(c);
-      argv[argc-2] = convert;
-      }
-
-    if (parameter[1] == "archinfo")
+      name1 = parameter[argc-2]; //bei Sichern/Zurückwschreiben von Verzeichnissen erforderlich
+      pos1 = name1.indexOf("'");
+      if (pos1 > -1)
+         {
+         name1 = name1.left(name1.size() -1);
+         name1 = name1.right(name1.size() -1); 
+         stra= name1.toStdString();
+         c = stra.c_str();
+         convert = const_cast<char *>(c);
+         argv[argc-2] = convert;
+         }
+        name1 = parameter[argc-1]; //bei Sichern/Zurückwschreiben von Verzeichnissen erforderlich
+        pos1 = name1.indexOf("'");
+        if (pos1 > -1)
+         {
+         name1 = name1.left(name1.size() -1);
+         name1 = name1.right(name1.size() -1); 
+         stra= name1.toStdString();
+         c = stra.c_str();
+         convert = const_cast<char *>(c);
+         argv[argc-1] = convert;
+         }
+       }
+     if (parameter[1] == "archinfo")
       {
       name1 = parameter[argc-1];
-      stra= name1.toStdString();
-      pos = stra.find("'",0);
-      if(pos==0)
-        {
-        // ' muss entfernt werden
-          while(1)
-          {
-          string::size_type loc = stra.find( "'", 0 );
-	    if( loc != string::npos )
-	    	stra.replace(loc,1,"");
-	    else
-	    	break;
-	  }
-        }
-      c = stra.c_str();
-      convert = const_cast<char *>(c);
-      argv[argc-1] = convert;
-      }
-    //qDebug() << "anlagen in fsarchirver" << anlage0 << anlage1 << anlage2 << anlage3 << anlage4 << anlage5 << anlage6 << anlage7;
+      pos1 = name1.indexOf("'");
+        if (pos1 > -1)
+         {
+         name1 = name1.left(name1.size() -1);
+         name1 = name1.right(name1.size() -1); 
+         stra= name1.toStdString();
+         c = stra.c_str();
+         convert = const_cast<char *>(c);
+         argv[argc-1] = convert;
+         }
+       }
+ //   }
+ //   qDebug() << "anlagen in fsarchirver main.cc" << anlage0 << anlage1 << anlage2 << anlage3 << anlage4 << anlage5 << anlage6 << anlage7;
     filename = home + "/.config/qt-fsarchiver/zahlen.txt";
     filename1 = filename.c_str();  //string to const char
     ret = fsarchiver_main(argc, argv);
@@ -184,7 +182,6 @@ QFile file(dateiname);
         for (k=0; k< anzahl ; k++){
           dummy = _attr[k+1];
              {
-
              do
                 {
     	         found=dummy.indexOf("+");
@@ -198,7 +195,7 @@ QFile file(dateiname);
              }
              parameter[k] = _attr[k+1];
        }
-//qDebug() << "paramter" << parameter[0] << parameter[1] << parameter[2] << parameter[3] << parameter[4] << parameter[5] << parameter[6] << parameter[7] << parameter[8];
+//qDebug() << "paramter in main.cc" << parameter[0] << parameter[1] << parameter[2] << parameter[3] << parameter[4] << parameter[5] << parameter[6] << parameter[7] << parameter[8] <<  parameter[9] << parameter[10];
 fsarchiver_aufruf(anzahl,parameter[0].toLatin1().data(),parameter[1].toLatin1().data(),parameter[2].toLatin1().data(),parameter[3].toLatin1().data(),parameter[4].toLatin1().data(),parameter[5].toLatin1().data (),parameter[6].toLatin1().data(),parameter[7].toLatin1().data(),parameter[8].toLatin1().data(),parameter[9].toLatin1().data(),parameter[10].toLatin1().data(),parameter[11].toLatin1().data(),parameter[12].toLatin1().data(),parameter[13].toLatin1().data(),parameter[14].toLatin1().data());
 }
 
